@@ -59,4 +59,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami 
+          script: |
+            echo "HOST: ${{ secrets.HOST }}"
+            echo "USERNAME: ${{ secrets.USERNAME }}"
+            echo "PASSWORD: ${{ secrets.PASSWORD }}"
+            echo "PORT: ${{ secrets.PORT }}" 
