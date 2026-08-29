@@ -72,7 +72,7 @@ jobs:
             docker run -d \
               --name ${{ env.CONTAINER_NAME }} \
               --restart unless-stopped \
-              -p 8080:80 \
+              -p 7080:80 \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
 
             docker ps --filter "name=${{ env.CONTAINER_NAME }}" --format 'table {{.Names}}\t{{.Status}}'
