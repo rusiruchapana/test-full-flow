@@ -60,7 +60,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            echo "HOST: ${{ secrets.HOST }}"
-            echo "USERNAME: ${{ secrets.USERNAME }}"
-            echo "PASSWORD: ${{ secrets.PASSWORD }}"
-            echo "PORT: ${{ secrets.PORT }}" 
+            set -e
+
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+
+            docker stop ${{ env.CONTAINER_NAME }} || true
+            docker rm ${{ env.CONTAINER_NAME }} || true
+ 
