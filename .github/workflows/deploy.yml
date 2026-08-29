@@ -60,7 +60,7 @@ jobs:
           push-to-registry: true
 
   deploy:
-    name: Deploy to DigitalOcean VPS
+    name: Deploy to DigitalOcean vps
     needs: build-and-push-image
     runs-on: ubuntu-latest
 
