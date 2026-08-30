@@ -3,266 +3,357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CloudOps Control Center</title>
+  <title>Wander Sri Lanka</title>
 </head>
 
-<body style="margin:0; padding:0; box-sizing:border-box; font-family:Arial,Helvetica,sans-serif; background:#0b1120; color:#e2e8f0; min-height:100vh;">
+<body style="margin:0; font-family:Arial,Helvetica,sans-serif; background:#f8fafc; color:#172033;">
 
-  <div style="max-width:1200px; margin:auto; padding:30px 20px;">
+  <!-- Navigation -->
+  <header style="background:#ffffff; border-bottom:1px solid #e5e7eb; padding:18px 6%; display:flex; justify-content:space-between; align-items:center;">
 
-    <!-- Header -->
-    <header style="display:flex; justify-content:space-between; align-items:center; padding:18px 22px; background:#111827; border:1px solid #1e293b; border-radius:14px; margin-bottom:30px;">
+    <div style="font-size:25px; font-weight:bold; color:#0f766e;">
+      Wander<span style="color:#f59e0b;">.</span>
+    </div>
 
-      <div>
-        <div style="font-size:13px; color:#64748b; letter-spacing:2px; text-transform:uppercase;">
-          Cloud Operations
-        </div>
+    <nav style="display:flex; gap:28px; align-items:center; font-size:14px;">
+      <a href="#" style="text-decoration:none; color:#0f172a;">Discover</a>
+      <a href="#" style="text-decoration:none; color:#0f172a;">Destinations</a>
+      <a href="#" style="text-decoration:none; color:#0f172a;">Experiences</a>
+      <a href="#" style="text-decoration:none; color:#ffffff; background:#0f766e; padding:11px 18px; border-radius:8px;">
+        Plan a Trip
+      </a>
+    </nav>
 
-        <div style="font-size:24px; font-weight:bold; color:#f8fafc; margin-top:5px;">
-          Control Center
-        </div>
+  </header>
+
+
+  <!-- Hero -->
+  <section style="background:linear-gradient(120deg,#134e4a,#0f766e,#115e59); padding:90px 6%; color:white;">
+
+    <div style="max-width:1100px; margin:auto;">
+
+      <div style="display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); padding:8px 15px; border-radius:30px; font-size:13px; margin-bottom:22px;">
+        🌴 YOUR NEXT ADVENTURE STARTS HERE
       </div>
 
-      <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:#86efac;">
-        <span style="width:10px; height:10px; background:#22c55e; border-radius:50%; display:inline-block; box-shadow:0 0 10px #22c55e;"></span>
-        All Systems Operational
-      </div>
+      <h1 style="font-size:clamp(45px,7vw,76px); line-height:1.05; margin:0 0 20px; max-width:800px;">
+        Discover places<br>
+        worth remembering.
+      </h1>
 
-    </header>
-
-
-    <!-- Main Hero -->
-    <section style="display:grid; grid-template-columns:1.5fr 1fr; gap:25px; margin-bottom:25px;">
-
-      <div style="background:#111827; border:1px solid #1e293b; border-radius:18px; padding:40px;">
-
-        <div style="color:#38bdf8; font-size:14px; font-weight:bold; margin-bottom:18px;">
-          SYSTEM DEPLOYMENT #2026.08
-        </div>
-
-        <h1 style="font-size:48px; line-height:1.1; margin:0 0 20px; color:#f8fafc;">
-          From Commit<br>
-          <span style="color:#38bdf8;">to Production.</span>
-        </h1>
-
-        <p style="color:#94a3b8; font-size:17px; line-height:1.7; max-width:650px; margin-bottom:30px;">
-          A production-ready application delivered through an automated
-          software delivery pipeline. Every change is built, packaged,
-          verified and released with minimal manual intervention.
-        </p>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-
-          <div style="background:#0f172a; border:1px solid #334155; padding:12px 18px; border-radius:8px; color:#cbd5e1; font-size:14px;">
-            VERSION <strong style="color:#38bdf8;">v2.4.1</strong>
-          </div>
-
-          <div style="background:#0f172a; border:1px solid #334155; padding:12px 18px; border-radius:8px; color:#cbd5e1; font-size:14px;">
-            ENVIRONMENT <strong style="color:#4ade80;">PRODUCTION</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- Deployment Status -->
-      <div style="background:#020617; border:1px solid #1e293b; border-radius:18px; padding:30px;">
-
-        <div style="font-size:13px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">
-          Deployment Status
-        </div>
-
-        <div style="font-family:monospace; font-size:14px; line-height:2.3;">
-
-          <div>
-            <span style="color:#22c55e;">✓</span>
-            <span style="color:#94a3b8;">Source checkout</span>
-          </div>
-
-          <div>
-            <span style="color:#22c55e;">✓</span>
-            <span style="color:#94a3b8;">Automated tests</span>
-          </div>
-
-          <div>
-            <span style="color:#22c55e;">✓</span>
-            <span style="color:#94a3b8;">Container build</span>
-          </div>
-
-          <div>
-            <span style="color:#22c55e;">✓</span>
-            <span style="color:#94a3b8;">Image published</span>
-          </div>
-
-          <div>
-            <span style="color:#22c55e;">✓</span>
-            <span style="color:#94a3b8;">Production deployment</span>
-          </div>
-
-          <div style="margin-top:18px; padding-top:18px; border-top:1px solid #1e293b; color:#4ade80;">
-            ● Deployment completed successfully
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- Metrics -->
-    <section style="display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:25px;">
-
-      <div style="background:#111827; border:1px solid #1e293b; border-radius:12px; padding:22px;">
-        <div style="font-size:12px; color:#64748b; text-transform:uppercase;">
-          Availability
-        </div>
-        <div style="font-size:30px; font-weight:bold; margin-top:8px; color:#4ade80;">
-          99.98%
-        </div>
-      </div>
-
-      <div style="background:#111827; border:1px solid #1e293b; border-radius:12px; padding:22px;">
-        <div style="font-size:12px; color:#64748b; text-transform:uppercase;">
-          Response Time
-        </div>
-        <div style="font-size:30px; font-weight:bold; margin-top:8px; color:#38bdf8;">
-          42ms
-        </div>
-      </div>
-
-      <div style="background:#111827; border:1px solid #1e293b; border-radius:12px; padding:22px;">
-        <div style="font-size:12px; color:#64748b; text-transform:uppercase;">
-          Deployments
-        </div>
-        <div style="font-size:30px; font-weight:bold; margin-top:8px; color:#a78bfa;">
-          128
-        </div>
-      </div>
-
-      <div style="background:#111827; border:1px solid #1e293b; border-radius:12px; padding:22px;">
-        <div style="font-size:12px; color:#64748b; text-transform:uppercase;">
-          Active Nodes
-        </div>
-        <div style="font-size:30px; font-weight:bold; margin-top:8px; color:#fbbf24;">
-          03
-        </div>
-      </div>
-
-    </section>
-
-
-    <!-- Architecture -->
-    <section style="background:#111827; border:1px solid #1e293b; border-radius:18px; padding:30px; margin-bottom:25px;">
-
-      <h2 style="margin:0 0 8px; color:#f8fafc; font-size:22px;">
-        Delivery Architecture
-      </h2>
-
-      <p style="margin:0 0 25px; color:#64748b; font-size:14px;">
-        Automated path from developer workstation to production infrastructure.
+      <p style="font-size:18px; line-height:1.7; max-width:650px; color:#ccfbf1; margin-bottom:35px;">
+        From misty mountains and golden beaches to ancient cities and
+        unforgettable wildlife, discover the beauty of Sri Lanka one
+        journey at a time.
       </p>
 
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
 
-        <div style="flex:1; min-width:130px; text-align:center; padding:20px; background:#0f172a; border-radius:10px; border:1px solid #334155;">
-          <div style="font-size:28px; margin-bottom:8px;">⌨️</div>
-          <strong style="color:#f8fafc;">Developer</strong>
-          <div style="font-size:12px; color:#64748b; margin-top:5px;">Code Commit</div>
-        </div>
+        <a href="#" style="display:inline-block; background:#f59e0b; color:#172033; text-decoration:none; padding:14px 22px; border-radius:8px; font-weight:bold;">
+          Explore Destinations →
+        </a>
 
-        <div style="color:#38bdf8; font-size:24px;">→</div>
-
-        <div style="flex:1; min-width:130px; text-align:center; padding:20px; background:#0f172a; border-radius:10px; border:1px solid #334155;">
-          <div style="font-size:28px; margin-bottom:8px;">⚙️</div>
-          <strong style="color:#f8fafc;">CI Pipeline</strong>
-          <div style="font-size:12px; color:#64748b; margin-top:5px;">Build & Test</div>
-        </div>
-
-        <div style="color:#38bdf8; font-size:24px;">→</div>
-
-        <div style="flex:1; min-width:130px; text-align:center; padding:20px; background:#0f172a; border-radius:10px; border:1px solid #334155;">
-          <div style="font-size:28px; margin-bottom:8px;">📦</div>
-          <strong style="color:#f8fafc;">Registry</strong>
-          <div style="font-size:12px; color:#64748b; margin-top:5px;">Container Image</div>
-        </div>
-
-        <div style="color:#38bdf8; font-size:24px;">→</div>
-
-        <div style="flex:1; min-width:130px; text-align:center; padding:20px; background:#0f172a; border-radius:10px; border:1px solid #334155;">
-          <div style="font-size:28px; margin-bottom:8px;">☁️</div>
-          <strong style="color:#f8fafc;">Production</strong>
-          <div style="font-size:12px; color:#64748b; margin-top:5px;">Live Service</div>
-        </div>
+        <a href="#" style="display:inline-block; background:rgba(255,255,255,0.1); color:white; text-decoration:none; padding:14px 22px; border-radius:8px; border:1px solid rgba(255,255,255,0.25);">
+          View Experiences
+        </a>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- Terminal -->
-    <section style="background:#020617; border:1px solid #1e293b; border-radius:14px; overflow:hidden;">
+  <!-- Popular Destinations -->
+  <section style="max-width:1100px; margin:60px auto; padding:0 20px;">
 
-      <div style="padding:12px 18px; background:#111827; border-bottom:1px solid #1e293b; color:#64748b; font-size:13px;">
-        ● ● ● &nbsp;&nbsp; deployment.log
-      </div>
-
-      <div style="padding:22px; font-family:monospace; font-size:13px; line-height:1.9; color:#94a3b8;">
-
-        <div>
-          <span style="color:#64748b;">08:42:11</span>
-          <span style="color:#38bdf8;"> INFO </span>
-          Pipeline initialized
-        </div>
-
-        <div>
-          <span style="color:#64748b;">08:42:19</span>
-          <span style="color:#38bdf8;"> INFO </span>
-          Building application image...
-        </div>
-
-        <div>
-          <span style="color:#64748b;">08:42:47</span>
-          <span style="color:#4ade80;"> SUCCESS </span>
-          Container image created
-        </div>
-
-        <div>
-          <span style="color:#64748b;">08:43:02</span>
-          <span style="color:#4ade80;"> SUCCESS </span>
-          Deployment completed
-        </div>
-
-        <div>
-          <span style="color:#64748b;">08:43:04</span>
-          <span style="color:#4ade80;"> READY </span>
-          Application listening for traffic
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- Footer -->
-    <footer style="text-align:center; padding:28px 10px; color:#475569; font-size:13px;">
-      <div style="margin-bottom:6px;">
-        CLOUDOPS • AUTOMATION • RELIABILITY
-      </div>
+    <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:25px;">
 
       <div>
-        Infrastructure automated. Deployments repeatable. Systems observable.
+        <div style="font-size:12px; color:#0f766e; font-weight:bold; letter-spacing:2px;">
+          EXPLORE
+        </div>
+
+        <h2 style="font-size:32px; margin:8px 0 0;">
+          Popular destinations
+        </h2>
       </div>
-    </footer>
 
-  </div>
+      <a href="#" style="color:#0f766e; text-decoration:none; font-size:14px;">
+        View all →
+      </a>
+
+    </div>
 
 
-  <!-- Responsive layout -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+
+      <!-- Destination 1 -->
+      <article style="background:white; border:1px solid #e5e7eb; border-radius:16px; overflow:hidden;">
+
+        <div style="height:190px; background:linear-gradient(135deg,#64748b,#0f766e); display:flex; align-items:end; padding:20px; color:white;">
+          <div>
+            <div style="font-size:13px; opacity:.8;">CENTRAL HIGHLANDS</div>
+            <h3 style="font-size:26px; margin:5px 0 0;">Ella</h3>
+          </div>
+        </div>
+
+        <div style="padding:20px;">
+          <p style="color:#64748b; font-size:14px; line-height:1.6; margin-top:0;">
+            Walk through tea plantations, discover hidden waterfalls
+            and watch the mountains disappear into the clouds.
+          </p>
+
+          <div style="color:#f59e0b; font-size:13px;">
+            ★ ★ ★ ★ ★ &nbsp; 4.9
+          </div>
+        </div>
+
+      </article>
+
+
+      <!-- Destination 2 -->
+      <article style="background:white; border:1px solid #e5e7eb; border-radius:16px; overflow:hidden;">
+
+        <div style="height:190px; background:linear-gradient(135deg,#0ea5e9,#f59e0b); display:flex; align-items:end; padding:20px; color:white;">
+          <div>
+            <div style="font-size:13px; opacity:.8;">SOUTHERN COAST</div>
+            <h3 style="font-size:26px; margin:5px 0 0;">Mirissa</h3>
+          </div>
+        </div>
+
+        <div style="padding:20px;">
+          <p style="color:#64748b; font-size:14px; line-height:1.6; margin-top:0;">
+            Relax beside turquoise water, explore coastal cafés and
+            experience unforgettable sunsets by the ocean.
+          </p>
+
+          <div style="color:#f59e0b; font-size:13px;">
+            ★ ★ ★ ★ ★ &nbsp; 4.8
+          </div>
+        </div>
+
+      </article>
+
+
+      <!-- Destination 3 -->
+      <article style="background:white; border:1px solid #e5e7eb; border-radius:16px; overflow:hidden;">
+
+        <div style="height:190px; background:linear-gradient(135deg,#92400e,#eab308); display:flex; align-items:end; padding:20px; color:white;">
+          <div>
+            <div style="font-size:13px; opacity:.8;">CULTURAL TRIANGLE</div>
+            <h3 style="font-size:26px; margin:5px 0 0;">Sigiriya</h3>
+          </div>
+        </div>
+
+        <div style="padding:20px;">
+          <p style="color:#64748b; font-size:14px; line-height:1.6; margin-top:0;">
+            Step into history, climb an ancient rock fortress and
+            experience one of the island's most iconic landmarks.
+          </p>
+
+          <div style="color:#f59e0b; font-size:13px;">
+            ★ ★ ★ ★ ★ &nbsp; 4.9
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- Experiences -->
+  <section style="background:#ecfdf5; padding:65px 20px;">
+
+    <div style="max-width:1100px; margin:auto;">
+
+      <div style="text-align:center; margin-bottom:40px;">
+
+        <div style="font-size:12px; color:#0f766e; font-weight:bold; letter-spacing:2px;">
+          TRAVEL YOUR WAY
+        </div>
+
+        <h2 style="font-size:34px; margin:10px 0;">
+          Find your kind of adventure
+        </h2>
+
+        <p style="color:#64748b; max-width:600px; margin:auto; line-height:1.6;">
+          Whether you want to slow down, explore something new or
+          simply escape the everyday, there's a journey waiting for you.
+        </p>
+
+      </div>
+
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:15px;">
+
+        <div style="background:white; padding:25px 20px; border-radius:14px; text-align:center;">
+          <div style="font-size:35px;">🏖️</div>
+          <h3>Beach Escape</h3>
+          <p style="font-size:13px; color:#64748b; line-height:1.5;">
+            Slow mornings and peaceful evenings beside the ocean.
+          </p>
+        </div>
+
+        <div style="background:white; padding:25px 20px; border-radius:14px; text-align:center;">
+          <div style="font-size:35px;">🥾</div>
+          <h3>Adventure</h3>
+          <p style="font-size:13px; color:#64748b; line-height:1.5;">
+            Trails, mountains and experiences beyond the ordinary.
+          </p>
+        </div>
+
+        <div style="background:white; padding:25px 20px; border-radius:14px; text-align:center;">
+          <div style="font-size:35px;">🐘</div>
+          <h3>Wildlife</h3>
+          <p style="font-size:13px; color:#64748b; line-height:1.5;">
+            Get closer to nature and discover incredible wildlife.
+          </p>
+        </div>
+
+        <div style="background:white; padding:25px 20px; border-radius:14px; text-align:center;">
+          <div style="font-size:35px;">🍛</div>
+          <h3>Local Culture</h3>
+          <p style="font-size:13px; color:#64748b; line-height:1.5;">
+            Taste local food and experience authentic island life.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Trip Planner -->
+  <section style="max-width:1100px; margin:65px auto; padding:0 20px;">
+
+    <div style="background:#172033; border-radius:20px; padding:45px; color:white; display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center;">
+
+      <div>
+
+        <div style="font-size:12px; color:#fbbf24; letter-spacing:2px; font-weight:bold;">
+          PLAN YOUR JOURNEY
+        </div>
+
+        <h2 style="font-size:38px; margin:12px 0 18px;">
+          One island.<br>
+          Endless possibilities.
+        </h2>
+
+        <p style="color:#94a3b8; line-height:1.7; max-width:520px;">
+          Build a trip around the places, activities and experiences
+          that interest you most. Your next story is only a few clicks away.
+        </p>
+
+        <a href="#" style="display:inline-block; margin-top:15px; background:#f59e0b; color:#172033; text-decoration:none; padding:13px 20px; border-radius:8px; font-weight:bold;">
+          Start Planning
+        </a>
+
+      </div>
+
+
+      <div style="background:#0f172a; border:1px solid #334155; border-radius:14px; padding:25px;">
+
+        <div style="font-size:13px; color:#64748b; margin-bottom:18px;">
+          SAMPLE ITINERARY
+        </div>
+
+        <div style="border-left:2px solid #0f766e; padding-left:18px;">
+
+          <div style="margin-bottom:20px;">
+            <strong>Day 01</strong>
+            <div style="font-size:13px; color:#94a3b8; margin-top:5px;">
+              Arrive & explore Colombo
+            </div>
+          </div>
+
+          <div style="margin-bottom:20px;">
+            <strong>Day 02</strong>
+            <div style="font-size:13px; color:#94a3b8; margin-top:5px;">
+              Discover cultural heritage
+            </div>
+          </div>
+
+          <div style="margin-bottom:20px;">
+            <strong>Day 03</strong>
+            <div style="font-size:13px; color:#94a3b8; margin-top:5px;">
+              Mountain escape
+            </div>
+          </div>
+
+          <div>
+            <strong>Day 04</strong>
+            <div style="font-size:13px; color:#94a3b8; margin-top:5px;">
+              Sunset by the southern coast
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Quote -->
+  <section style="text-align:center; padding:40px 20px 70px;">
+
+    <div style="font-size:45px; color:#f59e0b;">
+      “
+    </div>
+
+    <p style="font-size:25px; line-height:1.5; max-width:750px; margin:auto; color:#334155;">
+      The best journeys aren't measured in kilometres,
+      but in the moments you bring home.
+    </p>
+
+    <div style="margin-top:18px; color:#64748b; font-size:14px;">
+      — Wander Sri Lanka
+    </div>
+
+  </section>
+
+
+  <!-- Footer -->
+  <footer style="background:#0f172a; color:#94a3b8; padding:35px 20px;">
+
+    <div style="max-width:1100px; margin:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+
+      <div>
+        <div style="font-size:20px; font-weight:bold; color:white;">
+          Wander<span style="color:#f59e0b;">.</span>
+        </div>
+
+        <div style="font-size:12px; margin-top:6px;">
+          Discover more. Travel further. Live fully.
+        </div>
+      </div>
+
+      <div style="font-size:12px;">
+        © 2026 Wander Sri Lanka
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- Responsive styles -->
   <style>
-    @media (max-width: 800px) {
-      section:first-of-type {
+
+    @media (max-width:800px) {
+
+      nav {
+        display:none !important;
+      }
+
+      section[style*="repeat(3,1fr)"] {
         grid-template-columns:1fr !important;
       }
 
@@ -270,22 +361,24 @@
         grid-template-columns:repeat(2,1fr) !important;
       }
 
-      h1 {
-        font-size:38px !important;
+      div[style*="grid-template-columns:1.3fr 1fr"] {
+        grid-template-columns:1fr !important;
       }
+
     }
 
-    @media (max-width: 500px) {
+    @media (max-width:500px) {
+
       section[style*="repeat(4,1fr)"] {
         grid-template-columns:1fr !important;
       }
 
-      header {
-        flex-direction:column !important;
-        align-items:flex-start !important;
-        gap:15px !important;
+      h1 {
+        font-size:45px !important;
       }
+
     }
+
   </style>
 
 </body>
