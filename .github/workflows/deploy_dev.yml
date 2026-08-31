@@ -57,7 +57,7 @@ jobs:
   #           ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-frontend:${{ github.sha }}
 
   deploy:
-    needs: build-and-push
+    #needs: build-and-push
     runs-on: ubuntu-latest
 
     steps:
