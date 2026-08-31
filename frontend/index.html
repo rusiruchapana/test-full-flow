@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Production Frontend</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #111827;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Frontend is live</h1>
+  <p id="backend-status">Loading...</p>
+
+  <script>
+    fetch("http://localhost:8000/api/health")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("backend-status").textContent =
+          "Backend status: " + data.status + " | DB: " + data.database;
+      })
+      .catch(() => {
+        document.getElementById("backend-status").textContent = "Backend unavailable";
+      });
+  </script>
+</body>
+</html>
