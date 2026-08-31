@@ -69,6 +69,7 @@ jobs:
           echo "chmod completed successfully"
           #ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+
       # - name: Copy compose file and nginx config
       #   run: |
       #     scp -i ~/.ssh/id_rsa docker-compose.dev.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/var/www/test-full-flow/docker-compose.dev.yml
