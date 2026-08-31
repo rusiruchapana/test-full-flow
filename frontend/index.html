@@ -1,31 +1,246 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Production Frontend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local CRUD Demo</title>
   <style>
+    * { box-sizing: border-box; }
     body {
+      margin: 0;
+      padding: 30px;
       font-family: Arial, sans-serif;
-      padding: 40px;
       background: #111827;
+      color: #f3f4f6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 { margin-bottom: 20px; }
+    form {
+      background: #1f2937;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      font-size: 16px;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    button {
+      background: #2563eb;
       color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button.secondary { background: #374151; }
+    button.danger { background: #b91c1c; }
+    #status {
+      margin-bottom: 20px;
+      color: #93c5fd;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .small-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .small-actions button {
+      width: auto;
+      padding: 8px 12px;
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
-  <h1>Frontend is live</h1>
-  <p id="backend-status">Loading...</p>
+  <div class="container">
+    <h1>Local CRUD Demo</h1>
+    <p id="status">Checking backend...</p>
+
+    <form id="item-form">
+      <input id="title" type="text" placeholder="Title" required />
+      <textarea id="description" placeholder="Description"></textarea>
+      <label>
+        <input id="completed" type="checkbox" /> Completed
+      </label>
+      <button type="submit">Create item</button>
+    </form>
+
+    <ul id="items-list"></ul>
+  </div>
 
   <script>
-    fetch("http://localhost:8000/api/health")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("backend-status").textContent =
-          "Backend status: " + data.status + " | DB: " + data.database;
-      })
-      .catch(() => {
-        document.getElementById("backend-status").textContent = "Backend unavailable";
+    const API_URL = 'http://localhost:8000/api';
+    const statusEl = document.getElementById('status');
+    const listEl = document.getElementById('items-list');
+    const form = document.getElementById('item-form');
+
+    async function loadHealth() {
+      try {
+        const res = await fetch(`${API_URL}/health`);
+        const data = await res.json();
+        statusEl.textContent = data.status === 'ok'
+          ? `Backend OK | DB: ${data.database}`
+          : `Backend error: ${data.error}`;
+      } catch (error) {
+        statusEl.textContent = 'Backend unavailable. Start Docker and the FastAPI app.';
+      }
+    }
+
+    async function loadItems() {
+      try {
+        const res = await fetch(`${API_URL}/items`);
+        const items = await res.json();
+
+        listEl.innerHTML = '';
+
+        if (!items.length) {
+          listEl.innerHTML = '<li>No items yet.</li>';
+          return;
+        }
+
+        items.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <div class="item-header">
+              <strong>${item.title}</strong>
+              <span>${item.completed ? 'Done' : 'Open'}</span>
+            </div>
+            <p>${item.description || 'No description'}</p>
+            <div class="small-actions">
+              <button class="secondary" data-action="toggle" data-id="${item.id}">Toggle</button>
+              <button class="secondary" data-action="edit" data-id="${item.id}">Edit</button>
+              <button class="danger" data-action="delete" data-id="${item.id}">Delete</button>
+            </div>
+          `;
+          listEl.appendChild(li);
+        });
+      } catch (error) {
+        listEl.innerHTML = '<li>Unable to load items.</li>';
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const payload = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        completed: document.getElementById('completed').checked,
+      };
+
+      await fetch(`${API_URL}/items`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
+
+      form.reset();
+      loadItems();
+    });
+
+    listEl.addEventListener('click', async (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+
+      const { action, id } = button.dataset;
+      if (!id) return;
+
+      if (action === 'delete') {
+        await fetch(`${API_URL}/items/${id}`, { method: 'DELETE' });
+      }
+
+      if (action === 'toggle') {
+        const item = await fetch(`${API_URL}/items/${id}`).then(res => res.json());
+        await fetch(`${API_URL}/items/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ completed: !item.completed })
+        });
+      }
+
+      if (action === 'edit') {
+        const item = await fetch(`${API_URL}/items/${id}`).then(res => res.json());
+        document.getElementById('title').value = item.title;
+        document.getElementById('description').value = item.description || '';
+        document.getElementById('completed').checked = item.completed;
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.textContent = 'Update item';
+        form.dataset.editId = id;
+      }
+
+      if (form.dataset.editId && action !== 'edit') {
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.textContent = 'Create item';
+        delete form.dataset.editId;
+      }
+
+      if (form.dataset.editId) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.textContent = 'Update item';
+      }
+
+      loadItems();
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const payload = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        completed: document.getElementById('completed').checked,
+      };
+
+      const editId = form.dataset.editId;
+
+      if (editId) {
+        await fetch(`${API_URL}/items/${editId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        form.dataset.editId = '';
+        form.querySelector('button[type="submit"]').textContent = 'Create item';
+      } else {
+        await fetch(`${API_URL}/items`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      form.reset();
+      loadItems();
+    });
+
+    loadHealth();
+    loadItems();
   </script>
 </body>
 </html>
