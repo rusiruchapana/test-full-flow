@@ -15,12 +15,14 @@ name: Deploy to Dev EC2
 #     branches:
 #       - dev
 
-on:
+'on':
   workflow_dispatch:
   push:
     branches:
       - dev
 
+
+      
 jobs:
   build-and-push:
     if: github.event_name == 'push' || github.event.pull_request.draft == false
