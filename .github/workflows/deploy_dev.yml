@@ -78,6 +78,7 @@ jobs:
       - name: Copy compose file and nginx config
         run: |
           scp -i ~/.ssh/id_rsa docker-compose.dev.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/var/www/test-full-flow/docker-compose.dev.yml
+          echo "copy file is completed successfully"
           scp -i ~/.ssh/id_rsa -r nginx ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/var/www/test-full-flow/
 
 
