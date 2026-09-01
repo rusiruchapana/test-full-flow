@@ -88,7 +88,14 @@ jobs:
             cd /var/www/test-full-flow &&
             echo 'Stopping and removing old containers...' &&
             docker compose -f docker-compose.dev.yml down --remove-orphans 2>/dev/null || true &&
-            echo 'Old containers cleaned up' &&
+            echo 'Killing any process on port 80...' &&
+            sudo lsof -ti:80 | xargs -r kill -9 2>/dev/null || true &&
+            echo 'Waiting for port to be fully released...' &&
+            sleep 2 &&
+            echo 'Removing all stopped containers and dangling images...' &&
+            docker container prune -f 2>/dev/null || true &&
+            docker image prune -f 2>/dev/null || true &&
+            echo 'Old state cleaned up' &&
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }} &&
             echo 'Pulling and starting new containers...' &&
             docker compose -f docker-compose.dev.yml up -d --pull always &&
