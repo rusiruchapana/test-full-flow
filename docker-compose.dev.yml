@@ -45,6 +45,25 @@ services:
     networks:
       - app-network
 
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-dev
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+
+    depends_on:
+      - frontend
+      - backend
+
+    networks:
+      - app-network
+
 volumes:
   postgres_data:
 
