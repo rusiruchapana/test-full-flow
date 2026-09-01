@@ -87,18 +87,30 @@ jobs:
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
             set -e
             cd /var/www/test-full-flow
+            echo '=== Diagnostic: Check what is using port 80 ==='
+            (netstat -tlnp 2>/dev/null | grep :80 || echo 'No process found via netstat') || true
             echo '=== Stopping old containers ==='
             docker compose -f docker-compose.dev.yml down 2>/dev/null || true
             echo '=== Removing all stopped containers ==='
-            docker container prune -f 2>/dev/null || true
-            echo '=== Restarting Docker daemon to clear stale state ==='
-            sudo systemctl restart docker
+            docker container prune -af 2>/dev/null || true
+            echo '=== Removing all networks ==='
+            docker network prune -af 2>/dev/null || true
+            echo '=== Killing any lingering container processes ==='
+            docker ps -aq 2>/dev/null | xargs -r docker kill 2>/dev/null || true
+            echo '=== Removing all containers ==='
+            docker ps -aq 2>/dev/null | xargs -r docker rm -f 2>/dev/null || true
+            echo '=== Waiting 5 seconds for port release ==='
             sleep 5
-            echo '=== Verifying Docker is ready ==='
-            docker ps
+            echo '=== Restarting Docker daemon ==='
+            sudo systemctl restart docker 2>/dev/null || systemctl restart docker 2>/dev/null || service docker restart 2>/dev/null || true
+            sleep 5
+            echo '=== Verifying Docker is running ==='
+            docker ps || echo 'Docker still starting...'
+            sleep 2
             echo '=== Logging in to GHCR ==='
-            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }}
-            echo '=== Starting containers ==='
+            echo '${{ secrets.PAT_TOKEN }}' | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo '=== Starting fresh containers ==='
             docker compose -f docker-compose.dev.yml up -d --pull always
-            echo '=== Deployment complete ==='
+            echo '=== Deployment complete - checking container status ==='
+            docker ps
           "
