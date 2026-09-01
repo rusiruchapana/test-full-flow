@@ -82,10 +82,10 @@ jobs:
           scp -i ~/.ssh/id_rsa -r nginx ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/var/www/test-full-flow/
 
 
-      # - name: Deploy to dev EC2
-      #   run: |
-      #     ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
-      #       cd /var/www/test-full-flow &&
-      #       docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }} &&
-      #       docker compose -f docker-compose.dev.yml up -d --pull always
-      #     "
+      - name: Deploy to dev EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
+            cd /var/www/test-full-flow &&
+            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }} &&
+            docker compose -f docker-compose.dev.yml up -d --pull always
+          "
