@@ -87,20 +87,34 @@ jobs:
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
             set -e
             cd /var/www/test-full-flow
+
             echo '=== Force removing nginx-dev container ==='
             docker rm -f nginx-dev 2>/dev/null || true
+
             echo '=== Stopping all containers ==='
             docker compose -f docker-compose.dev.yml down 2>/dev/null || true
+
+
             echo '=== Removing all containers ==='
             docker ps -aq 2>/dev/null | xargs -r docker rm -f 2>/dev/null || true
+
+
             echo '=== Removing all networks ==='
             docker network prune -af 2>/dev/null || true
+
+
             echo '=== Waiting 3 seconds for port release ==='
             sleep 3
+
+
             echo '=== Logging in to GHCR ==='
             echo '${{ secrets.PAT_TOKEN }}' | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+
             echo '=== Starting fresh containers ==='
             docker compose -f docker-compose.dev.yml up -d --pull always
+
+            
             echo '=== Deployment complete ==='
             docker ps
           "
