@@ -41,7 +41,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "8081:81"
+      - "8081:80"
     networks:
       - app-network
 
