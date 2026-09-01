@@ -86,6 +86,11 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
             cd /var/www/test-full-flow &&
+            echo 'Stopping and removing old containers...' &&
+            docker compose -f docker-compose.dev.yml down --remove-orphans 2>/dev/null || true &&
+            echo 'Old containers cleaned up' &&
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }} &&
-            docker compose -f docker-compose.dev.yml up -d --pull always
+            echo 'Pulling and starting new containers...' &&
+            docker compose -f docker-compose.dev.yml up -d --pull always &&
+            echo 'Deployment successful'
           "
