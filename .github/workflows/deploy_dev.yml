@@ -62,6 +62,10 @@ jobs:
     environment: dev
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
