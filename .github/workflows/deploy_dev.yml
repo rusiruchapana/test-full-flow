@@ -85,7 +85,17 @@ jobs:
       - name: Deploy to dev EC2
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "
-            cd /var/www/test-full-flow &&
-            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }} &&
+            set -e
+            cd /var/www/test-full-flow
+            echo '=== Stopping old containers ==='
+            docker compose -f docker-compose.dev.yml down --remove-orphans 2>/dev/null || true
+            echo '=== Removing all Docker containers ==='
+            docker ps -aq | xargs -r docker rm -f 2>/dev/null || true
+            echo '=== Waiting for port 80 to be released ==='
+            sleep 3
+            echo '=== Logging in to GHCR ==='
+            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT_TOKEN }}
+            echo '=== Starting containers ==='
             docker compose -f docker-compose.dev.yml up -d --pull always
+            echo '=== Deployment complete ==='
           "
